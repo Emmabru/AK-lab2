@@ -54,13 +54,14 @@ public class Reduction {
     }
     Set<String> unique = new HashSet<String>(uniqueList);
     //System.out.println(unique.size());
-      System.out.println(unique.size() + 2);      //antal roller
-      System.out.println(dialogList.size() + 2);  // antal scener
+      System.out.println(unique.size() );      //antal roller
+      System.out.println(dialogList.size());  // antal scener
       System.out.println(unique.size() + 2);      //antal roller=actors
 
-      for(int j = 0; j <= unique.size()+2; j++) {
-          System.out.print(unique.size() + " ");
-              for( int i = 1; i <= unique.size()+2; i++) {
+      for(int j = 0; j <= unique.size() -1 ; j++) {
+        int numberOfActors = unique.size() + 2;
+          System.out.print(numberOfActors + " ");
+              for( int i = 1; i <= unique.size() +2; i++) {
                 System.out.print(i + " ");
               }
               System.out.println();
@@ -71,9 +72,11 @@ public class Reduction {
       System.out.println("2 2 3");
 
       for (String line : dialogList){
-          System.out.println(line);
+        //  System.out.println(line);
       }
-
+      for(int i = 2; i <= dialogList.size() - 1 ; i++) {
+          System.out.println(dialogList.get(i));
+        }
 
 
     /*
