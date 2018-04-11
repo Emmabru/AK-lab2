@@ -21,18 +21,22 @@ public class Reduction {
 
   public Reduction(List<String> graphDetails){
     // System.out.println(graphDetails.get(0) + "\n" + graphDetails.get(1));
-    String vertices = graphDetails.get(0); // re write to output
-    String edges = graphDetails.get(1);
-    String colors = graphDetails.get(2);
-    // add to list in some order
+    int vertices = Integer.parseInt(graphDetails.get(0)); // re write to output
+    int edges = Integer.parseInt(graphDetails.get(1));
+    int colors = Integer.parseInt(graphDetails.get(2));
 
+    // add to list in some order
+/*    if (vertices <= colors) {
+      baseCase();
+      return;
+    } */
 
     //add roles with all actors possible to list
-
 
     //list of "scenes"
     List<String> dialogList = new ArrayList<String>();
     List<String> uniqueList = new ArrayList<String>();
+
     for( int i = 3; i <= graphDetails.size()-1; i++) {
           String x = graphDetails.get(i);
           // gör lista av dialoger
@@ -44,38 +48,41 @@ public class Reduction {
           String[] splited = x.split("\\s+");
           uniqueList.add(splited[0]);
           uniqueList.add(splited[1]);
-          int actor1 = Integer.parseInt(splited[0]);
-          int actor2 = Integer.parseInt(splited[1]);
-          actor1 = actor1 + 2;
-          actor2 = actor2 + 2;
+          int roll1 = Integer.parseInt(splited[0]);
+          int roll2 = Integer.parseInt(splited[1]);
           // number of un-isolated vertices, check against total vertices
-          dialogList.add("2 " + actor1 + " " + actor2);
+          dialogList.add("2 " + roll1 + " " + roll2);
 
     }
-    Set<String> unique = new HashSet<String>(uniqueList);
-    //System.out.println(unique.size());
-      System.out.println(unique.size() );      //antal roller
-      System.out.println(dialogList.size());  // antal scener
-      System.out.println(unique.size() + 2);      //antal roller=actors
 
-      for(int j = 0; j <= unique.size() -1 ; j++) {
-        int numberOfActors = unique.size() + 2;
-          System.out.print(numberOfActors + " ");
-              for( int i = 1; i <= unique.size() +2; i++) {
+
+    Set<String> unique = new HashSet<String>(uniqueList);
+      int roles = unique.size() + 3;
+      int scenes = dialogList.size() + roles -1;
+      int actors = colors + 2;
+      System.out.println(roles);           //antal roller
+      System.out.println(scenes);      // antal scener = edges
+      System.out.println(actors);                 //actors
+
+
+      //list of actors to roles
+      for(int j = 4; j <= roles; j++) {
+          System.out.print(actors-2 + " ");
+              for( int i = 2; i < actors ; i++) {
                 System.out.print(i + " ");
               }
               System.out.println();
       }
+      System.out.println("1 2");
+      System.out.println("1 1");
+      System.out.println("1 " + actors);  //the tree guy, played by added actor
 
-      // minimumkravet med 3 actors inkl. divor
-      System.out.println("2 1 3");
-      System.out.println("2 2 3");
-
-      for (String line : dialogList){
-        //  System.out.println(line);
-      }
-      for(int i = 2; i <= dialogList.size() - 1 ; i++) {
+      //scene and roles
+      for(int i = 0; i <= dialogList.size() -1 ; i++) {
           System.out.println(dialogList.get(i));
+        }
+      for(int i = 1; i < roles ; i++) {
+          System.out.println("2 "+ roles + " " + i);
         }
 
 
@@ -95,6 +102,15 @@ public class Reduction {
         DONE
     */
   }
-
+  void baseCase(){
+    System.out.println(3);
+    System.out.println(2);
+    System.out.println(3);
+    System.out.println("1 1");
+    System.out.println("1 2");
+    System.out.println("1 3");
+    System.out.println("2 1 3");
+    System.out.println("2 2 3");
+  }
 
 }
